@@ -51,26 +51,7 @@ Access it in your browser at `http://localhost:5173/`.
 
 Extracted content is stored in a `ref()` and displayed dynamically:
 
-## 5. Deployment
-
-### 5.1. Build for Production
-
-```sh
-npm run build
-```
-
-The output will be available in the `dist/` folder.
-
-### 5.2. Deploy to Vercel (Example)
-
-```sh
-npm install -g vercel
-vercel deploy
-```
-
-Alternatively, deploy to Netlify, Firebase, or your preferred hosting platform.
-
-## 6. Troubleshooting & Common Issues
+## 5. Troubleshooting & Common Issues
 
 | Issue                   | Solution                                                        |
 | ----------------------- | --------------------------------------------------------------- |
@@ -78,6 +59,6 @@ Alternatively, deploy to Netlify, Firebase, or your preferred hosting platform.
 | "File is too large"     | Limit file size via `FileReader` before processing.             |
 | "Deployment failed"     | Check build logs and ensure Node.js dependencies are installed. |
 
-## 7. Conclusion
+## 6. Conclusion
 
 This application successfully extracts and displays structured OOXML content in Vue 3. By following the setup guide, developers can **easily install, run, and modify** the project for further enhancements.
