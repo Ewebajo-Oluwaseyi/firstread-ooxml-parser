@@ -16,9 +16,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import NavigationDrawer from "./NavigationDrawer.vue";
-import LoadingIndicator from "./LoadingIndicator.vue";
-import { ParsedDocument } from "@/models/DocumentModels";
+import type { ParsedDocument } from "@/models/DocumentModels";
 
 const props = defineProps<{
   documentData: ParsedDocument;
