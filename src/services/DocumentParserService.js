@@ -1,7 +1,7 @@
 import * as mammoth from "mammoth";
 
 export default class DocumentParserService {
-  public static async parseDocument(file: File): Promise<any> {
+  static async parseDocument(file) {
     try {
       // Check file type
       if (file.name.endsWith(".xml")) {
@@ -15,11 +15,11 @@ export default class DocumentParserService {
       }
     } catch (error) {
       console.error("Error parsing document:", error);
-      throw new Error(`Failed to parse document: ${(error as Error).message}`);
+      throw new Error(`Failed to parse document: ${error.message}`);
     }
   }
 
-  private static async parseXmlDocument(file: File): Promise<any> {
+  static async parseXmlDocument(file) {
     try {
       const text = await file.text();
       const parser = new DOMParser();
@@ -41,13 +41,11 @@ export default class DocumentParserService {
       };
     } catch (error) {
       console.error("Error parsing XML document:", error);
-      throw new Error(
-        `Failed to parse XML document: ${(error as Error).message}`
-      );
+      throw new Error(`Failed to parse XML document: ${error.message}`);
     }
   }
 
-  private static async parseOoxmlDocument(file: File): Promise<any> {
+  static async parseOoxmlDocument(file) {
     try {
       // Use mammoth.js for conversion
       const result = await mammoth.convertToHtml({
@@ -62,13 +60,11 @@ export default class DocumentParserService {
       };
     } catch (error) {
       console.error("Error parsing OOXML document:", error);
-      throw new Error(
-        `Failed to parse OOXML document: ${(error as Error).message}`
-      );
+      throw new Error(`Failed to parse OOXML document: ${error.message}`);
     }
   }
 
-  private static xmlToHtml(xmlDoc: Document): string {
+  static xmlToHtml(xmlDoc) {
     const rootElement = xmlDoc.documentElement;
     let html = '<div class="xml-document">';
 
@@ -85,7 +81,7 @@ export default class DocumentParserService {
     return html;
   }
 
-  private static processXmlNode(node: Element, depth: number): string {
+  static processXmlNode(node, depth) {
     let html = "";
     const nodeName = node.nodeName;
 
@@ -155,7 +151,7 @@ export default class DocumentParserService {
     return html;
   }
 
-  private static isSectionLikeElement(element: Element): boolean {
+  static isSectionLikeElement(element) {
     const name = element.nodeName.toLowerCase();
 
     // Common section-like element names
@@ -193,11 +189,11 @@ export default class DocumentParserService {
     );
   }
 
-  private static generateId(baseName: string, counter: number): string {
+  static generateId(baseName, counter) {
     return `${baseName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-${counter}`;
   }
 
-  private static escapeHtml(text: string): string {
+  static escapeHtml(text) {
     return text
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -206,10 +202,7 @@ export default class DocumentParserService {
       .replace(/'/g, "&#039;");
   }
 
-  private static extractDocumentTitle(
-    htmlContent: string,
-    fallbackName: string
-  ): string {
+  static extractDocumentTitle(htmlContent, fallbackName) {
     // Try to find first heading
     const titleMatch = htmlContent.match(/<h1[^>]*>(.*?)<\/h1>/i);
     if (titleMatch && titleMatch[1]) {
@@ -221,7 +214,7 @@ export default class DocumentParserService {
     return fallbackName.replace(/\.[^/.]+$/, "");
   }
 
-  private static extractDocumentStructure(htmlContent: string): any[] {
+  static extractDocumentStructure(htmlContent) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlContent, "text/html");
 
@@ -229,9 +222,9 @@ export default class DocumentParserService {
     const headings = Array.from(doc.querySelectorAll("h1, h2, h3, h4, h5, h6"));
 
     // Root level sections
-    const rootSections: any[] = [];
-    let currentSection: any | null = null;
-    let sectionStack: any[] = [];
+    const rootSections = [];
+    let currentSection = null;
+    let sectionStack = [];
 
     headings.forEach((heading, index) => {
       const level = parseInt(heading.tagName.substring(1));
@@ -243,7 +236,7 @@ export default class DocumentParserService {
         heading.id = id;
       }
 
-      const newSection: any = {
+      const newSection = {
         id,
         title,
         level,
