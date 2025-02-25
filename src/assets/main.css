@@ -1,0 +1,58 @@
+.xml-document {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+
+.xml-attributes {
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-left: 3px solid #e0e0e0;
+  border-radius: 0 4px 4px 0;
+}
+
+.xml-attribute {
+  margin-bottom: 0.25rem;
+}
+
+.attr-name {
+  font-weight: 600;
+  color: #7b1fa2;
+}
+
+.attr-value {
+  color: #1565c0;
+}
+
+.xml-children {
+  /* margin-left: 1.5rem;
+  padding-left: 1rem; */
+  border-left: 1px dashed #e0e0e0;
+}
+
+.xml-text {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Add a style for the navigation structure */
+.section-item {
+  position: relative;
+}
+
+.section-item::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e0e0e0;
+}
