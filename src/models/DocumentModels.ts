@@ -1,4 +1,3 @@
-// models/DocumentModels.ts
 export interface DocumentSection {
   id: string;
   title: string;

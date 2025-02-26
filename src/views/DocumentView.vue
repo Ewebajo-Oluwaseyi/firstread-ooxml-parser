@@ -1,10 +1,12 @@
 <template>
   <div class="document-page">
-    <v-app-bar>
+    <v-app-bar class="app-bar">
       <v-btn icon @click="goHome">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
-      <v-toolbar-title>{{ documentTitle }}</v-toolbar-title>
+      <v-toolbar-title class="toolbar-title">
+        {{ documentTitle }}
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -15,7 +17,9 @@
       </v-btn>
     </v-app-bar>
 
-    <DocumentViewer :document-data="documentData" :is-loading="isLoading" />
+    <div class="viewer-container">
+      <DocumentViewer :document-data="documentData" :is-loading="isLoading" />
+    </div>
   </div>
 </template>
 
@@ -56,3 +60,63 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+.document-page {
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  background-color: #f9f9f9;
+}
+
+.app-bar {
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.viewer-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: auto;
+}
+
+@media (max-width: 1024px) {
+  .toolbar-title {
+    font-size: 1.3rem;
+  }
+  .viewer-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar-title {
+    font-size: 1.1rem;
+  }
+  .viewer-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar-title {
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+  .viewer-container {
+    padding: 0.8rem;
+  }
+}
+</style>

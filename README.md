@@ -18,8 +18,8 @@ This project is a **Single Page Application (SPA)** built with **Vue 3 and TypeS
 Clone the repository and install dependencies:
 
 ```sh
-git clone https://github.com/your-repo/ooxml-viewer.git
-cd ooxml-viewer
+git clone https://github.com/Ewebajo-Oluwaseyi/firstread-ooxml-parser
+cd firstread-ooxml-parser
 npm install
 ```
 
@@ -49,15 +49,14 @@ Access it in your browser at `http://localhost:5173/`.
 
 ### 4.3. Displaying Content in Vue
 
-Extracted content is stored in a `ref()` and displayed dynamically:
+Extracted content is stored in a pinia store and displayed dynamically
 
 ## 5. Troubleshooting & Common Issues
 
-| Issue                   | Solution                                                        |
-| ----------------------- | --------------------------------------------------------------- |
-| "Cannot parse document" | Ensure the uploaded file is a valid `.docx` or `.xml` format.   |
-| "File is too large"     | Limit file size via `FileReader` before processing.             |
-| "Deployment failed"     | Check build logs and ensure Node.js dependencies are installed. |
+| Issue                   | Solution                                                      |
+| ----------------------- | ------------------------------------------------------------- |
+| "Cannot parse document" | Ensure the uploaded file is a valid `.docx` or `.xml` format. |
+| "File is too large"     | Limit file size before processing.                            |
 
 ## 6. Conclusion
 

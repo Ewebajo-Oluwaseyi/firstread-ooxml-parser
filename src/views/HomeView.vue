@@ -2,11 +2,15 @@
   <div class="home">
     <h1 class="welcome-title">Vue.js and OOXML Processing</h1>
     <p class="welcome-description">
-      Implement a user-friendly interface that allows users to upload an OOXML
-      file
+      A user-friendly interface that allows users to upload an OOXML file
     </p>
 
     <FileUploader />
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Created by Ewebajo Oluwaseyi</p>
+    </footer>
   </div>
 </template>
 
@@ -19,18 +23,76 @@ import FileUploader from "@/components/FileUploader.vue";
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #777;
+  text-align: center;
 }
 
 .welcome-title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  text-align: center;
 }
 
 .welcome-description {
   font-size: 1.2rem;
   margin-bottom: 3rem;
-  text-align: center;
   color: #616161;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .home {
+    padding: 1.5rem;
+  }
+  .welcome-title {
+    font-size: 2rem;
+  }
+  .welcome-description {
+    font-size: 1rem;
+  }
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 1rem;
+  }
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+  .welcome-description {
+    font-size: 0.9rem;
+  }
+  .footer {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 0.8rem;
+  }
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  .welcome-description {
+    font-size: 0.85rem;
+  }
+  .footer {
+    font-size: 0.8rem;
+  }
 }
 </style>

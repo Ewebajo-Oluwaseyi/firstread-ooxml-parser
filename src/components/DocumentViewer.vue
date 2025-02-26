@@ -46,18 +46,6 @@ const scrollToSection = (sectionId: string): void => {
   /* overflow: hidden; */
 }
 
-.navigation-panel {
-  height: 100%;
-  border-right: 1px solid #e0e0e0;
-  overflow-y: auto;
-}
-
-.content-panel {
-  height: 100%;
-  overflow-y: auto;
-  padding: 2rem;
-}
-
 .document-content {
   /* max-width: 800px;
   margin: 0 auto; */

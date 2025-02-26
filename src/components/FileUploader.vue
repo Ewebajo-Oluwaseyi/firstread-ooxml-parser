@@ -1,6 +1,6 @@
 <template>
   <div class="file-uploader">
-    <h2>Upload OOXML Document</h2>
+    <h2 class="head">Upload OOXML Document</h2>
     <v-card class="upload-area" :class="{ 'drag-over': isDragOver }">
       <div
         class="drop-zone"
@@ -8,7 +8,7 @@
         @dragleave.prevent="onDragLeave"
         @drop.prevent="onFileDrop"
       >
-        <v-icon size="64">mdi-file-upload-outline</v-icon>
+        <v-icon :size="64">mdi-file-upload-outline</v-icon>
         <p>Drag and drop your document here or</p>
         <v-btn color="primary" @click="triggerFileInput"> Browse Files </v-btn>
         <div class="supported-formats">
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useDocumentStore } from "@/store/index";
 import DocumentParserService from "@/services/DocumentParserService";
@@ -137,11 +137,7 @@ const processFile = async (): Promise<void> => {
     const parsedDocument = await DocumentParserService.parseDocument(
       selectedFile.value
     );
-
-    // Store document data
     documentStore.setDocumentData(parsedDocument);
-
-    // Navigate to document view
     router.push({ name: "document", params: { id: Date.now().toString() } });
   } catch (error) {
     errorMessage.value = (error as Error).message;
@@ -156,10 +152,16 @@ const processFile = async (): Promise<void> => {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  align-items: center;
-  justify-content: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.head {
+  font-size: large;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .upload-area {
@@ -167,9 +169,9 @@ const processFile = async (): Promise<void> => {
   border: 2px dashed #ccc;
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 1rem;
-  width: 400px;
-  margin-top: 10px;
+  width: 100%;
+  max-width: 400px;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .drag-over {
@@ -189,10 +191,9 @@ const processFile = async (): Promise<void> => {
   padding: 1rem;
   background-color: #f5f5f5;
   border-radius: 4px;
-  align-items: center;
-  justify-content: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .supported-formats {
@@ -206,5 +207,40 @@ const processFile = async (): Promise<void> => {
   background-color: #ffebee;
   color: #d32f2f;
   border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .file-uploader {
+    padding: 1rem;
+  }
+
+  .upload-area {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .selected-file {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-uploader {
+    padding: 0.8rem;
+  }
+
+  .upload-area {
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .drop-zone p {
+    font-size: 0.9rem;
+  }
+
+  .selected-file {
+    padding: 0.6rem;
+  }
 }
 </style>
