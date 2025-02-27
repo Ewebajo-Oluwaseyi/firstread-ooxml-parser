@@ -37,6 +37,10 @@
       <v-btn color="success" @click="processFile" :loading="isLoading">
         Process Document
       </v-btn>
+      <v-btn color="error" variant="text" @click="removeFile" class="mt-2">
+        <v-icon>mdi-delete</v-icon>
+        Remove
+      </v-btn>
     </div>
 
     <div v-if="errorMessage" class="error-message">
@@ -104,6 +108,16 @@ const onFileDrop = (event: DragEvent): void => {
       errorMessage.value =
         "Please select a valid document file (.docx or .xml).";
     }
+  }
+};
+
+// Add remove file functionality
+const removeFile = (): void => {
+  selectedFile.value = null;
+  errorMessage.value = "";
+
+  if (fileInput.value) {
+    fileInput.value.value = "";
   }
 };
 
@@ -209,7 +223,6 @@ const processFile = async (): Promise<void> => {
   border-radius: 4px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .file-uploader {
     padding: 1rem;

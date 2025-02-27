@@ -30,7 +30,6 @@ import FileUploader from "@/components/FileUploader.vue";
   min-height: 100vh;
 }
 
-/* Footer */
 .footer {
   margin-top: 2rem;
   font-size: 1rem;
@@ -50,7 +49,6 @@ import FileUploader from "@/components/FileUploader.vue";
   color: #616161;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .home {
     padding: 1.5rem;

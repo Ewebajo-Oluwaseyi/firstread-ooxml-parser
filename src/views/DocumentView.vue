@@ -65,7 +65,6 @@ onMounted(() => {
 .document-page {
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
   background-color: #f9f9f9;
 }
 

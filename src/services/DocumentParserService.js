@@ -47,9 +47,15 @@ export default class DocumentParserService {
 
   static async parseOoxmlDocument(file) {
     try {
-      // Use mammoth.js for conversion
       const result = await mammoth.convertToHtml({
         arrayBuffer: await file.arrayBuffer(),
+        styleMap: [
+          "p[style-name='Heading 1'] => h1:fresh",
+          "p[style-name='Heading 2'] => h2:fresh",
+          "p[style-name='Heading 3'] => h3:fresh",
+          "p[style-name='Normal'] => p:fresh",
+          "p[style-name='List Paragraph'] => ul > li:fresh",
+        ],
       });
 
       return {
@@ -65,17 +71,28 @@ export default class DocumentParserService {
   }
 
   static xmlToHtml(xmlDoc) {
-    const rootElement = xmlDoc.documentElement;
     let html = '<div class="xml-document">';
 
-    // Extract document title if available (assuming it might be in a tag like <title> or as an attribute)
-    const titleElement = xmlDoc.querySelector("title");
-    if (titleElement && titleElement.textContent) {
-      html += `<h1>${this.escapeHtml(titleElement.textContent)}</h1>`;
-    }
+    const paragraphs = xmlDoc.getElementsByTagName("w:p");
 
-    // Process the XML document structure recursively
-    html += this.processXmlNode(rootElement, 1);
+    for (const paragraph of paragraphs) {
+      let textContent = "";
+      const runs = paragraph.getElementsByTagName("w:r");
+
+      for (const run of runs) {
+        const textNode = run.getElementsByTagName("w:t")[0];
+        if (textNode && textNode.textContent) {
+          textContent += textNode.textContent + " ";
+        }
+      }
+
+      const numPr = paragraph.getElementsByTagName("w:numPr")[0];
+      if (numPr) {
+        html += `<li>${textContent.trim()}</li>`;
+      } else {
+        html += `<p>${textContent.trim()}</p>`;
+      }
+    }
 
     html += "</div>";
     return html;

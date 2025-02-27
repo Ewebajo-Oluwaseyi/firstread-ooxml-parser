@@ -1,5 +1,5 @@
 <template>
-  <div class="document-viewer">
+  <div>
     <div class="document-content" ref="contentContainer">
       <div v-if="isLoading" class="loading-container">
         <loading-indicator />
@@ -24,31 +24,11 @@ const props = defineProps<{
 }>();
 
 const contentContainer = ref<HTMLElement | null>(null);
-
 const documentContent = computed(() => props.documentData.content || "");
-const documentStructure = computed(() => props.documentData.structure || []);
-const documentTitle = computed(
-  () => props.documentData.title || "Untitled Document"
-);
-const documentType = computed(() => props.documentData.documentType || "docx");
-
-const scrollToSection = (sectionId: string): void => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-};
 </script>
 
 <style scoped>
-.document-viewer {
-  /* height: calc(100vh - 64px); */
-  /* overflow: hidden; */
-}
-
 .document-content {
-  /* max-width: 800px;
-  margin: 0 auto; */
   margin-top: 100px;
   display: flex;
   justify-content: center;

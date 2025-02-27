@@ -7,6 +7,11 @@
   overflow-wrap: break-word;
 }
 
+.xml-document,
+.xml-text {
+  word-break: break-word;
+}
+
 /* XML Attributes */
 .xml-attributes {
   margin: 0.5rem 0 0.5rem 1rem;
